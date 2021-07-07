@@ -20,7 +20,7 @@ services:
         volumes:
             - '/home/user/docker_config/certs:/anjay/certs'
         logging:
-            driver: "local"
+#           driver: "local"
             options:
                 max-size: 100m
         image: avspresales.jfrog.io/poc-docker/anjay-commercial:latest
