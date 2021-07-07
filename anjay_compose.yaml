@@ -1,0 +1,29 @@
+version: '3.3'
+services:
+    demo:
+        ulimits:
+            nofile: 1024
+        environment:
+            - EP=anjay-demo
+            - PSK=psk_in_string
+            - PSK_IN_HEX=FALSE
+            - SECURITY=PSK
+            - BOOTSTRAP=FALSE
+            - LIFETIME=90
+            - TRANSPORT=UDP
+            - SERVER_HOST=lwm2m-test.avsystem.io
+            - CERT=anjay-demo.crt.der
+            - KEY=anjay-demo.key
+            - NETWORK=CATM1
+        cap_add:
+            - NET_ADMIN
+        volumes:
+            - '/home/user/docker_config/certs:/anjay/certs'
+        logging:
+            driver: "local"
+            options:
+                max-size: 100m
+        image: avspresales.jfrog.io/poc-docker/anjay-commercial:latest
+        restart: unless-stopped
+        stdin_open: true                                   # docker run -i
+        tty: true                                          # docker run -t
